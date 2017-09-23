@@ -6,15 +6,14 @@ import java.net.URL;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
+import org.junit.Before;
 
 public class HttpUtilityTest {
-    @Test
-    public void test() { fail(); }
 
-    /*@Test
-    public void makeSureThatGoogleIsUp() {
+    @Test
+    public void makeSureThatPageIsUp() {
         given().when().get("http://www.google.com").then().statusCode(200);
-    }*/
+    }
 
     @Test
     public void testURL() throws Exception {
@@ -36,6 +35,5 @@ public class HttpUtilityTest {
     @Test
     public void testAPIKey() { fail(); }
 
-    @Test
-    public void testHttpConnection() { fail(); }
+
 }
