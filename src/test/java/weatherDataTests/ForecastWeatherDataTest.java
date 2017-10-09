@@ -9,7 +9,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 import static org.junit.Assert.assertNotEquals;
 
-public class forecastWeatherDataTest {
+public class ForecastWeatherDataTest {
     //private WeatherRequest weatherDataRequest;
     //private ForecastWeatherData forecastWeatherData;
     private double longitudeTallinn;
