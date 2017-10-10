@@ -2,16 +2,16 @@ package forecastWeather;
 
 public class ForecastWeatherData {
     private String city;
-    private String country;
+    private String countryCode;
     private double longitude;
     private double latitude;
     private ForecastOneDayData firstDayWeather;
     private ForecastOneDayData secondDayWeather;
     private ForecastOneDayData thirdDayWeather;
 
-    public ForecastWeatherData(String city, String country, double longitude, double latitude, ForecastOneDayData firstDayWeather, ForecastOneDayData secondDayWeather, ForecastOneDayData thirdDayWeather) {
+    public ForecastWeatherData(String city, String countryCode, double longitude, double latitude, ForecastOneDayData firstDayWeather, ForecastOneDayData secondDayWeather, ForecastOneDayData thirdDayWeather) {
         this.city = city;
-        this.country = country;
+        this.countryCode = countryCode;
         this.longitude = longitude;
         this.latitude = latitude;
         this.firstDayWeather = firstDayWeather;
@@ -23,8 +23,8 @@ public class ForecastWeatherData {
         return city;
     }
 
-    public String getCountry() {
-        return country;
+    public String getcountryCode() {
+        return countryCode;
     }
 
     public double getLongitude() {
