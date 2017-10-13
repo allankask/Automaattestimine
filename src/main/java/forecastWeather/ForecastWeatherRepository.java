@@ -1,10 +1,37 @@
 package forecastWeather;
 
+import weatherRequest.WeatherRequest;
+
+import javax.ws.rs.core.UriBuilder;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 public class ForecastWeatherRepository {
 
     private static final String API_KEY ="fd427f21785ae9daac151dc00fc9e46f";
-    private static final String city = "Tallinn";
-    private static final String countryCode = "EE";
+
+
+
+    public static String buildForecastWeatherURL(WeatherRequest weatherRequest){
+        UriBuilder builder = UriBuilder
+                .fromPath("api.openweathermap.org")
+                .scheme("http")
+                .path("/data/2.5/forecast")
+                .queryParam("q", weatherRequest.getCity())
+                .queryParam("APPID", API_KEY)
+                .queryParam("units", weatherRequest.getFormat());
+
+        URL url = null;
+
+        try{
+            url = builder.build().toURL();
+        }
+        catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        return url.toString();
+
+    }
 
 
 }
