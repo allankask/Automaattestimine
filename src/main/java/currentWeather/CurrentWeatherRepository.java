@@ -25,8 +25,6 @@ public class CurrentWeatherRepository {
     private static final String API_KEY = "fd427f21785ae9daac151dc00fc9e46f";
 
 
-
-
     public static String buildCurrentWeatherURL(WeatherRequest request){
         UriBuilder builder = UriBuilder
                 .fromPath("http://api.openweathermap.org")
@@ -62,14 +60,14 @@ public class CurrentWeatherRepository {
 
     public CurrentWeatherData JSONResponseIntoCurrentWeatherData(WeatherRequest weatherRequest) throws IOException {
         JSONObject weatherDataInJson = getCurrentWeatherData(weatherRequest);
-        JSONObject sys = (JSONObject) weatherDataInJson.get("sys");
-        JSONObject main = (JSONObject) weatherDataInJson.get("main");
-        JSONObject coord = (JSONObject) weatherDataInJson.get("coord");
+        JSONObject sysInfo = (JSONObject) weatherDataInJson.get("sys");
+        JSONObject mainInfo = (JSONObject) weatherDataInJson.get("main");
+        JSONObject coordinates = (JSONObject) weatherDataInJson.get("coord");
         String city = (String) weatherDataInJson.get("name");
-        String country = (String) sys.get("country");
-        long temp = (long) main.get("temp");
-        double longitude = (double) coord.get("lon");
-        double latitude = (double) coord.get("lat");
+        String country = (String) sysInfo.get("country");
+        double temp = (double) mainInfo.get("temp");
+        double longitude = (double) coordinates.get("lon");
+        double latitude = (double) coordinates.get("lat");
         CurrentWeatherData currentWeatherData = new CurrentWeatherData(city, country, temp, latitude, longitude);
         return currentWeatherData;
     }
