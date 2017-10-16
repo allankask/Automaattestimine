@@ -3,11 +3,11 @@ package currentWeather;
 public class CurrentWeatherData {
     private String city;
     private String countryCode;
-    private double temp;
+    private long temp;
     private double latitude;
     private double longitude;
 
-    public CurrentWeatherData(String city, String countryCode, double temp, double latitude, double longitude) {
+    public CurrentWeatherData(String city, String countryCode, long temp, double latitude, double longitude) {
         this.city = city;
         this.countryCode = countryCode;
         this.temp = temp;

@@ -28,7 +28,7 @@ public class CurrentWeatherDataTest {
         currentWeatherData = currentWeatherRepository.JSONResponseIntoCurrentWeatherData(weatherRequest);
     }
     @Test
-    public void testIfURIBuilderBuildsAProperURL() {
+    public void testIfURIBuilderBuildsAProperURLForCurrentWeatherRequest() {
         String result = CurrentWeatherRepository.buildCurrentWeatherURL(weatherRequest);
         assertEquals(result, URL);
 

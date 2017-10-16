@@ -1,30 +1,51 @@
 package weatherDataTests;
 
 
+import forecastWeather.ForecastOneDayData;
+import forecastWeather.ForecastWeatherData;
+import forecastWeather.ForecastWeatherRepository;
 import org.junit.Before;
 import org.junit.Test;
+import weatherRequest.WeatherRequest;
 
+
+import java.io.IOException;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+
 import static org.junit.Assert.assertNotEquals;
 
 public class ForecastWeatherDataTest {
 
-    //private WeatherRequest weatherDataRequest;
-    //private ForecastWeatherData forecastWeatherData;
-    private double longitudeTallinn;
-    private double latitudeTallinn;
+    private WeatherRequest weatherRequest;
+    private ForecastWeatherData forecastWeatherData;
+    private ForecastWeatherRepository forecastWeatherRepository;
+
+    private String URL = "http://api.openweathermap.org/data/2.5/forecast?q=Tallinn&APPID=fd427f21785ae9daac151dc00fc9e46f&units=metric";
+
+    private double latitudeTallinn = 59.43;
+    private double longitudeTallinn = 24.75;
+
 
 
     @Before
-    public void initObjects(){
-        latitudeTallinn = 0;
-        longitudeTallinn = 0;
-        //weatherDataRequest = new WeatherDataRequest();
+    public void initObjects() throws IOException {
+
+        weatherRequest = new WeatherRequest("Tallinn", "EE", "metric");
+        forecastWeatherRepository = new ForecastWeatherRepository();
+        forecastWeatherData = forecastWeatherRepository.JSONResponseIntoForecastData(weatherRequest) ;
+
+
 
     }
-/*
+
+
+    @Test
+    public void testIfURIBuilderBuildsAProperURLForForecastWeatherRequest() {
+        String result = ForecastWeatherRepository.buildForecastWeatherURL(weatherRequest);
+        assertEquals(result, URL);
+    }
+
     @Test
     public void testIfResponseHasCoordinates() {
         assertNotEquals(null, forecastWeatherData.getLatitude());
@@ -33,31 +54,42 @@ public class ForecastWeatherDataTest {
 
     @Test
     public void testIfResponseCityMatchesRequestedCity() {
-        assertEquals(weatherDataRequest.getCity(),forecastWeatherData.getCity());
+        assertEquals(weatherRequest.getCity(),forecastWeatherData.getCity());
     }
 
     @Test
     public void testIfResponseCoordinatesMatchesTallinnCoordinates() {
-        assertEquals(weatherDataRequest.getLatitude(),latitudeTallinn);
-        assertEquals(weatherDataRequest.getLongitude(),longitudeTallinn);
-
+        assertEquals(forecastWeatherData.getLatitude(),latitudeTallinn, 2);
+        assertEquals(forecastWeatherData.getLongitude(),longitudeTallinn, 2);
     }
 
     @Test
-    public void testIfResponseHasMinAndMaxTemperatures() {
-        assertNotEquals(null, forecastWeatherData.getMaxTemp());
-        assertNotEquals(null, forecastWeatherData.getMinTemp());
+    public void testIfResponseDayOneHasMinAndMaxTemperatures() {
+        assertNotEquals(null, forecastWeatherData.getfirstDayWeather().getMaxTemp());
+        assertNotEquals(null, forecastWeatherData.getfirstDayWeather().getMinTemp());
+
+    }
+    @Test
+    public void testIfResponseDayTwoHasMinAndMaxTemperatures() {
+        assertNotEquals(null, forecastWeatherData.getsecondDayWeather().getMaxTemp());
+        assertNotEquals(null, forecastWeatherData.getsecondDayWeather().getMinTemp());
+
+    }
+    @Test
+    public void testIfResponseDayThreeHasMinAndMaxTemperatures() {
+        assertNotEquals(null, forecastWeatherData.getthirdDayWeather().getMaxTemp());
+        assertNotEquals(null, forecastWeatherData.getthirdDayWeather().getMinTemp());
 
     }
 
     @Test
     public void testIfResponseHasThreeDayForecast() {
-        assertNotEquals(null, forecastWeatherData.getFirstDay());
-        assertNotEquals(null, forecastWeatherData.getSecondDay());
-        assertNotEquals(null, forecastWeatherData.getThirdDay());
+        assertNotEquals(null, forecastWeatherData.getfirstDayWeather());
+        assertNotEquals(null, forecastWeatherData.getsecondDayWeather());
+        assertNotEquals(null, forecastWeatherData.getthirdDayWeather());
 
     }
 
-*/
+
 }
 

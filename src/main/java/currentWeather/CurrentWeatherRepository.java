@@ -65,7 +65,7 @@ public class CurrentWeatherRepository {
         JSONObject coordinates = (JSONObject) weatherDataInJson.get("coord");
         String city = (String) weatherDataInJson.get("name");
         String country = (String) sysInfo.get("country");
-        double temp = (double) mainInfo.get("temp");
+        long temp = (long) mainInfo.get("temp");
         double longitude = (double) coordinates.get("lon");
         double latitude = (double) coordinates.get("lat");
         CurrentWeatherData currentWeatherData = new CurrentWeatherData(city, country, temp, latitude, longitude);

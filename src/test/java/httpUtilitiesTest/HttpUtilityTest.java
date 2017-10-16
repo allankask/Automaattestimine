@@ -1,7 +1,9 @@
 package httpUtilitiesTest;
 
-import currentWeather.CurrentWeatherData;
-import forecastWeather.ForecastWeatherData;
+import currentWeather.CurrentWeatherRepository;
+import forecastWeather.ForecastWeatherRepository;
+import httpUtilities.HttpUtilities;
+
 import org.junit.Test;
 
 
@@ -14,31 +16,32 @@ import weatherRequest.WeatherRequest;
 
 public class HttpUtilityTest {
 
-    private WeatherRequest weatherDataRequest;
-    private CurrentWeatherData currentWeatherData;
-    private ForecastWeatherData forecastWeatherData;
+    private WeatherRequest weatherRequest;
+    private CurrentWeatherRepository currentWeatherRepository;
+    private ForecastWeatherRepository forecastWeatherRepository;
+    private HttpUtilities httpUtilities;
 
-    private String currentWeatherURL;
-    private String forecastWeatherURL;
 
-/*
+
     @Before
     public void initObjects() {
-        weatherDataRequest = new WeatherDataRequest();
+       currentWeatherRepository = new CurrentWeatherRepository();
+       forecastWeatherRepository = new ForecastWeatherRepository();
+       weatherRequest = new WeatherRequest("Tallinn", "EE", "metric");
+        httpUtilities = new HttpUtilities();
 
     }
 
     @Test
     public void testIfCurrentWeatherDataStatusIsOK(){
-
+        assertEquals(200, httpUtilities.getHTTPStatus(currentWeatherRepository.buildCurrentWeatherURL(weatherRequest)));
     }
 
     @Test
     public void testIfForecastWeatherDataStatusIsOK(){
-
+        assertEquals(200, httpUtilities.getHTTPStatus(forecastWeatherRepository.buildForecastWeatherURL(weatherRequest)));
     }
 
-*/
 
 
 }

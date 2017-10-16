@@ -1,6 +1,7 @@
 package forecastWeather;
 
 import httpUtilities.HttpUtilities;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -13,6 +14,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.Timestamp;
 
 
 public class ForecastWeatherRepository {
@@ -61,16 +63,40 @@ public class ForecastWeatherRepository {
         double latitude = (double) coord.get("lat");
         double longitude = (double) coord.get("lon");
         String cityName = (String) cityObject.get("name");
-        String country = (String) cityObject.get("country");
+        String countryCode = (String) cityObject.get("country");
         ForecastOneDayData dayOne = getOneDayData(forecastDataInJason, 1);
         ForecastOneDayData dayTwo = getOneDayData(forecastDataInJason, 2);
         ForecastOneDayData dayThree = getOneDayData(forecastDataInJason, 3);
-        ForecastWeatherData forecastReport = new ForecastWeatherData(cityName, country, longitude, latitude, dayOne, dayTwo, dayThree);
+        ForecastWeatherData forecastReport = new ForecastWeatherData(cityName, countryCode, longitude, latitude, dayOne, dayTwo, dayThree);
         return forecastReport;
     }
 
-    public ForecastOneDayData getOneDayData(JSONObject forecast, int day){
+    public ForecastOneDayData getOneDayData(JSONObject forecastDataObject, int day){
+        int currentDayOfMonth = (new Timestamp(System.currentTimeMillis())).toLocalDateTime().getDayOfMonth();
+        JSONArray forecast = (JSONArray) forecastDataObject.get("list");
 
+        double latestMinTemp = Integer.MAX_VALUE;
+        double latestMaxTemp = Integer.MIN_VALUE;
+        for (int i = 0; i < forecast.size(); i++)   {
+            JSONObject singleForecastObject = (JSONObject) forecast.get(i);
+            Timestamp timestamp = new Timestamp((Long) singleForecastObject.get("dt") * 1000);
+            JSONObject mainObject = (JSONObject) singleForecastObject.get("main");
+            Object minTemperatureObject = mainObject.get("temp_min");
+            Object maxTemperatureObject = mainObject.get("temp_max");
+            double minTempValue = new Double(minTemperatureObject.toString());
+            double maxTempValue = new Double(maxTemperatureObject.toString());
+            int daysFromToday = timestamp.toLocalDateTime().getDayOfMonth() - currentDayOfMonth;
+            if (daysFromToday == day)   {
+                if (minTempValue < latestMinTemp) {
+                    latestMinTemp = minTempValue;
+                }
+                if (maxTempValue < latestMaxTemp) {
+                    latestMaxTemp = maxTempValue;
+                }
+            }
+        }
+        ForecastOneDayData oneDayReport = new ForecastOneDayData(latestMaxTemp,latestMinTemp);
+        return oneDayReport;
     }
 
 }
