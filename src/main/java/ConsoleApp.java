@@ -23,10 +23,9 @@ public class ConsoleApp {
         //Gets city from scanner
         String cityName = sc.nextLine();
 
-        String inputFilePathInfo = System.getProperty("user.home") + "\\Desktop" + "\\input.txt";
-        String outputFilePath = System.getProperty("user.home") + "\\Desktop" + "\\output.txt";
 
+        String outputFilePath = System.getProperty("user.home") + "\\Desktop" + "\\output.txt";
         WeatherRequestUtil.getWeatherDataByCityNameAndWriteToFile(
-                inputFilePathInfo, outputFilePath, cityName);
+                inputFilePath, outputFilePath, cityName);
     }
 }
