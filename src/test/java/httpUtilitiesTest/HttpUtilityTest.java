@@ -1,8 +1,8 @@
 package httpUtilitiesTest;
 
-import currentWeather.CurrentWeatherRepository;
-import forecastWeather.ForecastWeatherRepository;
-import httpUtilities.HttpUtilities;
+import repository.CurrentWeatherRepository;
+import repository.ForecastWeatherRepository;
+import util.HttpUtilities;
 
 import org.junit.Test;
 
@@ -11,7 +11,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 import org.junit.Before;
-import weatherRequest.WeatherRequest;
+import model.WeatherRequest;
 
 
 public class HttpUtilityTest {

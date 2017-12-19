@@ -1,4 +1,6 @@
-package weatherRequest;
+package model;
+
+import org.json.simple.JSONObject;
 
 public class WeatherRequest {
     private String city;
@@ -21,5 +23,14 @@ public class WeatherRequest {
 
     public String getFormat() {
         return formatOfUnits;
+    }
+
+    public JSONObject asJson() {
+        JSONObject jObj = new JSONObject();
+        jObj.put("cityName", city);
+        jObj.put("countryCode", countryCode);
+        jObj.put("formatOfUnits", formatOfUnits);
+
+        return jObj;
     }
 }

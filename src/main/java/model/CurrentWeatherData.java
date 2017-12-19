@@ -1,4 +1,6 @@
-package currentWeather;
+package model;
+
+import org.json.simple.JSONObject;
 
 public class CurrentWeatherData {
     private String city;
@@ -34,4 +36,16 @@ public class CurrentWeatherData {
     public double getLongitude() {
         return longitude;
     }
+
+    public JSONObject asJson() {
+        JSONObject jObj = new JSONObject();
+        jObj.put("cityName", city);
+        jObj.put("countryCode", countryCode);
+        jObj.put("temp", temp);
+        jObj.put("latitude", latitude);
+        jObj.put("longitude", longitude);
+
+        return jObj;
+    }
 }
+

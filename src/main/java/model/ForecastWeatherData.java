@@ -1,4 +1,7 @@
-package forecastWeather;
+package model;
+
+import model.ForecastOneDayData;
+import org.json.simple.JSONObject;
 
 public class ForecastWeatherData {
     private String city;
@@ -45,5 +48,18 @@ public class ForecastWeatherData {
 
     public ForecastOneDayData getthirdDayWeather() {
         return thirdDayWeather;
+    }
+
+    public JSONObject asJson() {
+        JSONObject jObj = new JSONObject();
+        jObj.put("cityName", city);
+        jObj.put("countryCode", countryCode);
+        jObj.put("latitude", latitude);
+        jObj.put("longitude", longitude);
+        jObj.put("firstDayWeather", firstDayWeather);
+        jObj.put("secondDayWeather", secondDayWeather);
+        jObj.put("thirdDayWeather", thirdDayWeather);
+
+        return jObj;
     }
 }

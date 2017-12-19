@@ -1,11 +1,13 @@
-package forecastWeather;
+package repository;
 
-import httpUtilities.HttpUtilities;
+import util.HttpUtilities;
+import model.ForecastOneDayData;
+import model.ForecastWeatherData;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import weatherRequest.WeatherRequest;
+import model.WeatherRequest;
 
 import javax.ws.rs.core.UriBuilder;
 import java.io.IOException;
@@ -31,15 +33,15 @@ public class ForecastWeatherRepository {
                 .queryParam("APPID", API_KEY)
                 .queryParam("units", weatherRequest.getFormat());
 
-        URL url = null;
 
         try{
-            url = builder.build().toURL();
+            URL url = builder.build().toURL();
+            return url.toString();
         }
         catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        return url.toString();
+        return null;
 
     }
     public JSONObject getForecastWeatherData(WeatherRequest weatherRequest) throws IOException {

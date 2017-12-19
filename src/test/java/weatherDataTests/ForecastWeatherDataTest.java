@@ -1,12 +1,11 @@
 package weatherDataTests;
 
 
-import forecastWeather.ForecastOneDayData;
-import forecastWeather.ForecastWeatherData;
-import forecastWeather.ForecastWeatherRepository;
+import model.ForecastWeatherData;
+import repository.ForecastWeatherRepository;
 import org.junit.Before;
 import org.junit.Test;
-import weatherRequest.WeatherRequest;
+import model.WeatherRequest;
 
 
 import java.io.IOException;

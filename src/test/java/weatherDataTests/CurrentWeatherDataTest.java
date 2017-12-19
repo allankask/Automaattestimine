@@ -1,10 +1,10 @@
 package weatherDataTests;
 
-import currentWeather.CurrentWeatherData;
-import currentWeather.CurrentWeatherRepository;
+import model.CurrentWeatherData;
+import repository.CurrentWeatherRepository;
 import org.junit.Before;
 import org.junit.Test;
-import weatherRequest.WeatherRequest;
+import model.WeatherRequest;
 
 
 import java.io.IOException;

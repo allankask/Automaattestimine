@@ -1,16 +1,13 @@
-package currentWeather;
+package repository;
 
 
 
-import httpUtilities.HttpUtilities;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.HttpClientBuilder;
+import util.HttpUtilities;
+import model.CurrentWeatherData;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import weatherRequest.WeatherRequest;
+import model.WeatherRequest;
 import javax.ws.rs.core.UriBuilder;
 import java.io.IOException;
 import java.io.InputStream;
@@ -33,15 +30,16 @@ public class CurrentWeatherRepository {
                 .queryParam("APPID", API_KEY)
                 .queryParam("units", request.getFormat());
 
-        URL url = null;
+
 
         try{
-            url = builder.build().toURL();
+            URL url = builder.build().toURL();
+            return url.toString();
         }
         catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        return url.toString();
+        return null;
     }
 
     public JSONObject getCurrentWeatherData(WeatherRequest weatherRequest) throws IOException {
@@ -71,6 +69,9 @@ public class CurrentWeatherRepository {
         CurrentWeatherData currentWeatherData = new CurrentWeatherData(city, country, temp, latitude, longitude);
         return currentWeatherData;
     }
+
+
+
 
 
 

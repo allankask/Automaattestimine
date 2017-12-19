@@ -11,6 +11,7 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile 'org.mockito:mockito-core:2.+'
     compile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1'
     compile "javax.ws.rs:javax.ws.rs-api:2.0.1"
     testCompile 'org.glassfish.jersey.core:jersey-common:2.22.2'
