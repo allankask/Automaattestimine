@@ -87,4 +87,17 @@ public class InputFileReader {
 
         return null;
     }
+    public static List<String> getWeatherRequestCitysFromFile(String filePath) {
+        JSONArray jArr = InputFileReader.readFileAsJSONArray(filePath);
+        List<String> cityList = new ArrayList<>();
+
+        for (Object obj : jArr) {
+            JSONObject jObj = (JSONObject) obj;
+
+            Object a = jObj.get("cityName");
+            cityList.add((String) a);
+        }
+
+        return cityList;
+    }
 }

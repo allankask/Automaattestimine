@@ -1,4 +1,6 @@
 
+import com.sun.org.apache.xpath.internal.SourceTree;
+import util.InputFileReader;
 import util.WeatherRequestUtil;
 import java.util.Scanner;
 
@@ -13,18 +15,18 @@ public class ConsoleApp {
     }
 
     public void start() {
-
-        System.out.println("Please enter city name. " +
-                "Example: Tallinn, Riga, Oslo, Helsinki, etc...");
+        String inputFilePath = System.getProperty("user.home") + "\\Desktop" + "\\input.txt";
+        System.out.println(InputFileReader.getWeatherRequestCitysFromFile(inputFilePath));
+        System.out.println("Please enter city name from the cities above: ");
         Scanner sc = new Scanner(System.in);
 
         //Gets city from scanner
         String cityName = sc.nextLine();
 
-        String inputFilePath = System.getProperty("user.home") + "\\Desktop" + "\\input.txt";
+        String inputFilePathInfo = System.getProperty("user.home") + "\\Desktop" + "\\input.txt";
         String outputFilePath = System.getProperty("user.home") + "\\Desktop" + "\\output.txt";
 
         WeatherRequestUtil.getWeatherDataByCityNameAndWriteToFile(
-                inputFilePath, outputFilePath, cityName);
+                inputFilePathInfo, outputFilePath, cityName);
     }
 }
