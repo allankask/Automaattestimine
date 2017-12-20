@@ -16,6 +16,7 @@ public class ConsoleApp {
 
     public void start() {
         String inputFilePath = System.getProperty("user.home") + "\\Desktop" + "\\input.txt";
+
         System.out.println(InputFileReader.getWeatherRequestCitysFromFile(inputFilePath));
         System.out.println("Please enter city name from the cities above: ");
         Scanner sc = new Scanner(System.in);

@@ -100,4 +100,13 @@ public class InputFileReader {
 
         return cityList;
     }
+
+
+
+    // Non-Static method for mock test
+    public JSONArray readFileAsJSONArrayNonStatic(String filePath) {
+        JSONArray jArr = InputFileReader.readFileAsJSONArray(filePath);
+
+        return jArr;
+    }
 }

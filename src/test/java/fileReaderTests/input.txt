@@ -1,0 +1,12 @@
+[
+{
+"cityName":"Tallinn",
+"countryCode":"EE",
+"formatOfUnits":"metric"
+}
+{
+"cityName":"Riga",
+"countryCode":"LV",
+"formatOfUnits":"metric"
+}
+]
