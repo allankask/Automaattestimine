@@ -52,6 +52,19 @@ public class CurrentWeatherDataTest {
     }
 
 
+    @Test
+    public void testIfCoordinatesAreValid() {
+        boolean latitudeIsValid = currentWeatherData.getLatitude() <= 90 && currentWeatherData.getLatitude() >= -90;
+        boolean longitudeIsValid = currentWeatherData.getLongitude() <= 180 && currentWeatherData.getLongitude() >= -180;
+        assertEquals(true, latitudeIsValid);
+        assertEquals(true, longitudeIsValid);
+    }
+
+    @Test
+    public void testIfTemperatureIsValid() {
+        boolean temperatureIsValid = currentWeatherData.getTemp() > -100 && currentWeatherData.getTemp()< 100;
+        assertEquals(true, temperatureIsValid);
+    }
 
 
 
